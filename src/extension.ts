@@ -2,18 +2,6 @@ import * as vscode from 'vscode';
 
 let isMemeModeEnabled = true;
 let statusBarItem: vscode.StatusBarItem;
-
-// Decoration types
-const bainganDecorationType = vscode.window.createTextEditorDecorationType({
-    backgroundColor: new vscode.ThemeColor('memeDevMode.bainganBackground'),
-    borderRadius: '2px',
-    fontWeight: 'bold',
-    after: {
-        contentText: ' 🍆',
-        margin: '0 0 0 5px'
-    }
-});
-
 /**
  * Activate the extension
  */
@@ -74,9 +62,6 @@ export function activate(context: vscode.ExtensionContext) {
             const word = document.getText(range);
             const line = document.lineAt(position).text;
 
-            if (word === 'baingan') {
-                return new vscode.Hover('**Baingan!** 🍆\n\nFull energy activated.');
-            }
 
             if (line.includes('ayenn function()')) {
                 return new vscode.Hover('**Ayenn!** 🚀\n\nFunction activated with full swag.');
@@ -135,32 +120,9 @@ function updateDecorations(editor?: vscode.TextEditor) {
         return;
     }
 
-    const text = activeEditor.document.getText();
-    const baingans: vscode.DecorationOptions[] = [];
-    const regEx = /baingan/g;
-    let match;
 
-    // Efficiently find all matches
-    while ((match = regEx.exec(text))) {
-        const startPos = activeEditor.document.positionAt(match.index);
-        const endPos = activeEditor.document.positionAt(match.index + match[0].length);
-        const decoration = {
-            range: new vscode.Range(startPos, endPos),
-            hoverMessage: 'Baingan Energy! 🍆'
-        };
-        baingans.push(decoration);
-    }
-
-    activeEditor.setDecorations(bainganDecorationType, baingans);
 }
 
 function clearAllDecorations() {
-    const activeEditor = vscode.window.activeTextEditor;
-    if (activeEditor) {
-        activeEditor.setDecorations(bainganDecorationType, []);
-    }
-}
-
-export function deactivate() {
-    clearAllDecorations();
+    throw new Error('Function not implemented.');
 }
