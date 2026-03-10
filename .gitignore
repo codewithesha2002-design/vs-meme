@@ -1,0 +1,9 @@
+out
+node_modules
+.vscode-test
+*.vsix
+install_log.txt
+npm_log.txt
+build_log.txt
+git_log.txt
+git_log_copy.txt
