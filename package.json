@@ -1,0 +1,44 @@
+{
+  "name": "vs-meme",
+  "displayName": "VS Meme",
+  "description": "Play a meme sound when a terminal command fails",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "VS Meme",
+      "properties": {
+        "vs-meme.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable VS Meme sound notifications for failed terminal commands."
+        },
+        "vs-meme.customSoundPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to a custom sound file (.mp3, .wav). Leave empty to use the default meme sound."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.93.0",
+    "typescript": "^5.5.3"
+  }
+}
